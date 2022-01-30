@@ -22,7 +22,7 @@ const UsersFilter: React.FC<UsersFilterProps> = ({
   onChangeResultsCount,
   onChangeNat,
 }) => {
-  const handleChangeGenderValue = (e: any) => {
+  const handleChangeGenderValue = (e: React.MouseEvent<HTMLButtonElement>) => {
     onChangeGender(e.currentTarget.value);
   };
 
