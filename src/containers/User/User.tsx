@@ -6,6 +6,7 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
+  Typography,
 } from "@mui/material";
 import { UserProps } from "./User.types";
 import UserDetails from "components/UserDetails";
@@ -23,9 +24,9 @@ const User: React.FC<UserProps> = ({ user }) => {
         </ListItemAvatar>
         <ListItemText
           primary={
-            <>
+            <Typography>
               {title} {first} {last} {nat}
-            </>
+            </Typography>
           }
           secondary={phone}
         />

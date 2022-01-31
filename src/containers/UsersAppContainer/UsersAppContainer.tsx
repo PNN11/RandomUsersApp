@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import UsersFilter from "containers/UsersFilter";
 import UsersList from "containers/UsersList";
-import { Container, Divider } from "@mui/material";
+import { Container, Divider, Paper } from "@mui/material";
+import Header from "components/Header";
+import { useTheme } from "providers/ThemeProvider/ThemeProvider";
 
 const UsersAppContainer: React.FC = () => {
   const [filterValues, setFilterValues] = useState({
@@ -10,6 +12,8 @@ const UsersAppContainer: React.FC = () => {
     resultsCount: 10,
     nat: "",
   });
+
+  const { theme, toggleTheme } = useTheme();
 
   const handleChangeGender = (gender: string) => {
     setFilterValues({ ...filterValues, gender });
@@ -28,17 +32,20 @@ const UsersAppContainer: React.FC = () => {
   };
 
   return (
-    <Container>
-      <UsersFilter
-        filterValues={filterValues}
-        onChangeGender={handleChangeGender}
-        onChangePage={handleChangePage}
-        onChangeResultsCount={handleChangeResultsCount}
-        onChangeNat={handleChangeNat}
-      />
-      <Divider />
-      <UsersList filterValues={filterValues} />
-    </Container>
+    <Paper elevation={0}>
+      <Header toggleTheme={toggleTheme} theme={theme} />
+      <Container>
+        <UsersFilter
+          filterValues={filterValues}
+          onChangeGender={handleChangeGender}
+          onChangePage={handleChangePage}
+          onChangeResultsCount={handleChangeResultsCount}
+          onChangeNat={handleChangeNat}
+        />
+        <Divider />
+        <UsersList filterValues={filterValues} />
+      </Container>
+    </Paper>
   );
 };
 
