@@ -14,6 +14,7 @@ import {
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import { UsersFilterProps, nationals, results } from "./UsersFilter.types";
+import { useTranslation } from "react-i18next";
 
 const UsersFilter: React.FC<UsersFilterProps> = ({
   filterValues,
@@ -22,6 +23,8 @@ const UsersFilter: React.FC<UsersFilterProps> = ({
   onChangeResultsCount,
   onChangeNat,
 }) => {
+  const { t } = useTranslation();
+
   const handleChangeGenderValue = (e: React.MouseEvent<HTMLButtonElement>) => {
     onChangeGender(e.currentTarget.value);
   };
@@ -44,7 +47,10 @@ const UsersFilter: React.FC<UsersFilterProps> = ({
   return (
     <Stack direction="row" sx={{ justifyContent: "space-between", padding: 2 }}>
       <div>
-        <Typography>Gender: {filterValues.gender}</Typography>
+        <Typography>
+          {t("gender")}:
+          {filterValues.gender === "male" ? t("male") : t("female")}{" "}
+        </Typography>
         <ToggleButtonGroup value={filterValues.gender}>
           <ToggleButton value="male" onClick={handleChangeGenderValue}>
             <MaleIcon />
@@ -55,7 +61,9 @@ const UsersFilter: React.FC<UsersFilterProps> = ({
         </ToggleButtonGroup>
       </div>
       <Stack>
-        <Typography>Page: {filterValues.page}</Typography>
+        <Typography>
+          {t("page")}: {filterValues.page}
+        </Typography>
         <Pagination
           count={50}
           page={filterValues.page}
@@ -63,7 +71,7 @@ const UsersFilter: React.FC<UsersFilterProps> = ({
         />
       </Stack>
       <FormControl sx={{ width: 0.2 }}>
-        <InputLabel id="results">Results</InputLabel>
+        <InputLabel id="results">{t("results")}</InputLabel>
         <Select
           id="results"
           label="Results"
@@ -79,7 +87,7 @@ const UsersFilter: React.FC<UsersFilterProps> = ({
         </Select>
       </FormControl>
       <FormControl sx={{ width: 0.2 }}>
-        <InputLabel id="nat">Nat</InputLabel>
+        <InputLabel id="nat">{t("nat")}</InputLabel>
         <Select
           id="nat"
           label="Nat"

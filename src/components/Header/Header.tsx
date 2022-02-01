@@ -1,17 +1,58 @@
 import React from "react";
-import { Container, FormControlLabel, Paper } from "@mui/material";
+import {
+  Container,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Paper,
+  Radio,
+  RadioGroup,
+  Typography,
+} from "@mui/material";
 import { HeaderProps } from "./Header.types";
 import { MaterialUISwitch } from "./Header.styles";
 
-const Header: React.FC<HeaderProps> = ({ toggleTheme, theme }) => {
+const Header: React.FC<HeaderProps> = ({ toggleTheme, theme, t, i18n }) => {
+  const changeLanguage = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    value: string
+  ) => {
+    i18n.changeLanguage(value);
+  };
   return (
     <Paper elevation={0}>
-      <Container sx={{ textAlign: "right" }}>
-        <FormControlLabel
-          onChange={toggleTheme}
-          control={<MaterialUISwitch sx={{ m: 1 }} />}
-          label={theme ? theme : "theme"}
-        />
+      <Container
+        sx={{ display: "flex", justifyContent: "flex-end", gap: "35px" }}
+      >
+        <FormControl>
+          <FormLabel color="primary">{t("changeLang")}</FormLabel>
+          <RadioGroup row onChange={changeLanguage}>
+            <FormControlLabel
+              checked={i18n.language === "en"}
+              value="en"
+              control={<Radio />}
+              label="En"
+            />
+            <FormControlLabel
+              checked={i18n.language === "ru"}
+              value="ru"
+              control={<Radio />}
+              label="Ru"
+            />
+          </RadioGroup>
+        </FormControl>
+        <FormControl>
+          <FormLabel color="primary">{t("changeTheme")}</FormLabel>
+          <FormControlLabel
+            onChange={toggleTheme}
+            control={<MaterialUISwitch sx={{ m: 1 }} />}
+            label={
+              <Typography>
+                {theme === "light" ? t("light") : t("dark")}
+              </Typography>
+            }
+          />
+        </FormControl>
       </Container>
     </Paper>
   );

@@ -1,0 +1,15 @@
+{
+  "changeTheme": "Change theme",
+  "light": "Light",
+  "dark": "Dark",
+  "changeLang": "Change language",
+  "gender": "Gender",
+  "male": "male",
+  "female": "female",
+  "page": "Page",
+  "results": "Results",
+  "nat": "Nat",
+  "phone": "Phone",
+  "email": "Email",
+  "location": "Location"
+}

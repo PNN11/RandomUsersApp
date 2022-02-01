@@ -10,11 +10,13 @@ import {
 } from "@mui/material";
 import { UserProps } from "./User.types";
 import UserDetails from "components/UserDetails";
+import { useTranslation } from "react-i18next";
 
 const User: React.FC<UserProps> = ({ user }) => {
   const { picture, name, phone, nat } = user;
   const { title, first, last } = name;
   const [open, toggle] = useReducer((prev) => !prev, false);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -32,7 +34,7 @@ const User: React.FC<UserProps> = ({ user }) => {
         />
       </ListItem>
       <Dialog open={open} onClose={toggle}>
-        <UserDetails {...user} />
+        <UserDetails {...user} t={t} />
       </Dialog>
       <Divider variant="inset" component="li" />
     </>

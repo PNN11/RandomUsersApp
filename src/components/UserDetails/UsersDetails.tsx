@@ -14,6 +14,7 @@ const UsersDetails: React.FC<UserDetailsProps> = ({
   phone,
   email,
   location,
+  t,
 }) => {
   return (
     <DialogContent sx={{ padding: 0, width: 300 }}>
@@ -23,11 +24,15 @@ const UsersDetails: React.FC<UserDetailsProps> = ({
           <Typography variant="h4" marginBottom={2}>
             {name.title} {name.first} {name.last}
           </Typography>
-          <Typography>Phone: {phone}</Typography>
-          <Typography>Email: {email}</Typography>
           <Typography>
-            Location: {location.state} {location.city} {location.street.name}{" "}
-            {location.street.number} {location.postcode}
+            {t("phone")}: {phone}
+          </Typography>
+          <Typography>
+            {t("email")}: {email}
+          </Typography>
+          <Typography>
+            {t("location")}: {location.state} {location.city}{" "}
+            {location.street.name} {location.street.number} {location.postcode}
           </Typography>
         </CardContent>
       </Card>
