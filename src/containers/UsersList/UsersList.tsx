@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { UsersListProps } from "./UsersList.types";
-import { UserType } from "api/users.types";
-import { getUsers } from "api/users";
 import { CircularProgress, List } from "@mui/material";
 import User from "containers/User";
+import { useDispatch, useSelector } from "react-redux";
+import { getSlice, getUsers } from "store/users";
+import { Statuses } from "store/types";
 
-const UsersList: React.FC<UsersListProps> = ({ filterValues }) => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [users, setUsers] = useState<UserType[]>([]);
+const UsersList: React.FC<UsersListProps> = () => {
+  const { users, usersRequestStatus, gender, page, resultsCount, nat } =
+    useSelector(getSlice);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setLoading(true);
+    dispatch(getUsers({ gender, page, resultsCount, nat }));
+  }, [gender, page, resultsCount, nat, dispatch]);
 
-    getUsers(filterValues)
-      .then((users) => setUsers(users))
-      .catch(() => setError(true))
-      .finally(() => setLoading(false));
-  }, [filterValues]);
+  const loading = usersRequestStatus === Statuses.PENDING;
 
-  getUsers(filterValues).then((data) => console.log(data));
+  const error = usersRequestStatus === Statuses.FAILURE;
 
   return (
     <List sx={{ textAlign: "center" }}>
       {loading && <CircularProgress size={70} />}
       {error && "Error..."}
-      {!error &&
-        !loading &&
+      {!loading &&
+        !error &&
         users &&
         users.map((user) => <User key={user.login.uuid} user={user} />)}
     </List>

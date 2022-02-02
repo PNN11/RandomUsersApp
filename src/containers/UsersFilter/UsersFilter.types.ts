@@ -1,12 +1,4 @@
-import { GetUsersArgs } from "api/users.types";
-
-export interface UsersFilterProps {
-  filterValues: GetUsersArgs;
-  onChangeGender: (gender: string) => void;
-  onChangePage: (page: number) => void;
-  onChangeResultsCount: (resultsCount: number) => void;
-  onChangeNat: (nat: string) => void;
-}
+export interface UsersFilterProps {}
 
 export const nationals: string[] = [
   "AU",

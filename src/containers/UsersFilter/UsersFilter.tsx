@@ -15,43 +15,46 @@ import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import { UsersFilterProps, nationals, results } from "./UsersFilter.types";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getSlice,
+  setGender,
+  setNat,
+  setPage,
+  setResultCount,
+} from "store/users";
 
-const UsersFilter: React.FC<UsersFilterProps> = ({
-  filterValues,
-  onChangeGender,
-  onChangePage,
-  onChangeResultsCount,
-  onChangeNat,
-}) => {
+const UsersFilter: React.FC<UsersFilterProps> = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const { gender, page, resultsCount, nat } = useSelector(getSlice);
 
   const handleChangeGenderValue = (e: React.MouseEvent<HTMLButtonElement>) => {
-    onChangeGender(e.currentTarget.value);
+    dispatch(setGender(e.currentTarget.value));
   };
 
   const handleChangePageValue = (
     e: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    onChangePage(value);
+    dispatch(setPage(value));
   };
 
   const handleChangeResultsCountValue = (e: SelectChangeEvent<number>) => {
-    onChangeResultsCount(Number(e.target.value));
+    dispatch(setResultCount(Number(e.target.value)));
   };
 
   const handleChangeNatValue = (e: SelectChangeEvent) => {
-    onChangeNat(e.target.value);
+    dispatch(setNat(e.target.value));
   };
 
   return (
     <Stack direction="row" sx={{ justifyContent: "space-between", padding: 2 }}>
       <div>
         <Typography>
-          {t("gender")}:
-          {filterValues.gender === "male" ? t("male") : t("female")}{" "}
+          {t("gender")}:{gender === "male" ? t("male") : t("female")}{" "}
         </Typography>
-        <ToggleButtonGroup value={filterValues.gender}>
+        <ToggleButtonGroup value={gender}>
           <ToggleButton value="male" onClick={handleChangeGenderValue}>
             <MaleIcon />
           </ToggleButton>
@@ -62,13 +65,9 @@ const UsersFilter: React.FC<UsersFilterProps> = ({
       </div>
       <Stack>
         <Typography>
-          {t("page")}: {filterValues.page}
+          {t("page")}: {page}
         </Typography>
-        <Pagination
-          count={50}
-          page={filterValues.page}
-          onChange={handleChangePageValue}
-        />
+        <Pagination count={50} page={page} onChange={handleChangePageValue} />
       </Stack>
       <FormControl sx={{ width: 0.2 }}>
         <InputLabel id="results">{t("results")}</InputLabel>
@@ -76,7 +75,7 @@ const UsersFilter: React.FC<UsersFilterProps> = ({
           id="results"
           label="Results"
           name="Results"
-          value={filterValues.resultsCount}
+          value={resultsCount}
           onChange={handleChangeResultsCountValue}
         >
           {results.map((res) => (
@@ -92,7 +91,7 @@ const UsersFilter: React.FC<UsersFilterProps> = ({
           id="nat"
           label="Nat"
           name="Nat"
-          value={filterValues.nat}
+          value={nat}
           onChange={handleChangeNatValue}
         >
           {nationals.map((nat) => (

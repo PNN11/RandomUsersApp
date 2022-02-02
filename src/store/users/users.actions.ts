@@ -44,10 +44,10 @@ export const setPage: usersTypes.SetPageActionCreator = (page) => ({
 });
 
 export const setResultCount: usersTypes.SetResultCountActionCreator = (
-  resultCount
+  resultsCount
 ) => ({
   type: usersTypes.SET_RESULTS_COUNT,
-  payload: resultCount,
+  payload: resultsCount,
 });
 
 export const setNat: usersTypes.SetNatActionCreator = (nat) => ({

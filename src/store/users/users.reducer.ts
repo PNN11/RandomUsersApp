@@ -30,7 +30,7 @@ export const usersReducer = (
     case usersTypes.SET_PAGE:
       return { ...state, page: action.payload };
     case usersTypes.SET_RESULTS_COUNT:
-      return { ...state, resultCount: action.payload };
+      return { ...state, resultsCount: action.payload };
     case usersTypes.SET_NAT:
       return { ...state, nat: action.payload };
     default:
