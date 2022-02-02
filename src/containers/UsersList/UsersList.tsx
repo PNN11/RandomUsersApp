@@ -19,6 +19,8 @@ const UsersList: React.FC<UsersListProps> = ({ filterValues }) => {
       .finally(() => setLoading(false));
   }, [filterValues]);
 
+  getUsers(filterValues).then((data) => console.log(data));
+
   return (
     <List sx={{ textAlign: "center" }}>
       {loading && <CircularProgress size={70} />}
