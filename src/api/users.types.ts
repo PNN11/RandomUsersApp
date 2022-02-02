@@ -5,6 +5,11 @@ export interface GetUsersArgs {
   nat: string;
 }
 
+export interface UsersRequestAnswer {
+  results: UserType[];
+  info: Info;
+}
+
 export interface UserType {
   gender: string;
   name: Name;
@@ -18,6 +23,13 @@ export interface UserType {
   id: Id;
   picture: Picture;
   nat: string;
+}
+
+interface Info {
+  seed: string;
+  results: number;
+  page: number;
+  version: string;
 }
 
 interface Name {
