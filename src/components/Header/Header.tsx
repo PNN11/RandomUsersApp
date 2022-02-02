@@ -44,6 +44,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme, theme, t, i18n }) => {
         <FormControl>
           <FormLabel color="primary">{t("changeTheme")}</FormLabel>
           <FormControlLabel
+            checked={theme === "dark"}
             onChange={toggleTheme}
             control={<MaterialUISwitch sx={{ m: 1 }} />}
             label={
