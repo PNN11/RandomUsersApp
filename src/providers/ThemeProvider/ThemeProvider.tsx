@@ -12,6 +12,10 @@ import {
 } from "@mui/material";
 
 import { ThemeContextType } from "./ThemeProvider.types";
+import {
+  getItemFromLocalStorage,
+  setItemToLocalStorage,
+} from "helpers/localStorage";
 
 const darkTheme = createTheme({
   palette: {
@@ -30,11 +34,11 @@ export const useTheme = () => useContext(ThemeContext);
 
 const ThemeProvider: React.FC = ({ children }) => {
   const [theme, setTheme] = useState<string>(
-    localStorage.getItem("theme") || "light"
+    getItemFromLocalStorage("theme") || "light"
   );
 
   useEffect(() => {
-    localStorage.setItem("theme", theme);
+    setItemToLocalStorage("theme", theme);
   }, [theme]);
 
   const toggleTheme = useCallback(() => {

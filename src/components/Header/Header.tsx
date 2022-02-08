@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 
 import { HeaderProps } from "./Header.types";
 import { MaterialUISwitch } from "./Header.styles";
+import { setItemToLocalStorage } from "helpers/localStorage";
 
 const Header: React.FC<HeaderProps> = ({ toggleTheme, theme }) => {
   const { t, i18n } = useTranslation();
@@ -22,6 +23,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme, theme }) => {
     value: string
   ) => {
     i18n.changeLanguage(value);
+    setItemToLocalStorage("lng", value);
   };
   return (
     <Paper elevation={0}>
