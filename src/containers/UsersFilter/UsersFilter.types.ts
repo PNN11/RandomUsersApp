@@ -1,7 +1,7 @@
-import { GetUsersArgs } from "api/users.types";
+import { UserRequestParams } from "api/users.types";
 
 export interface UsersFilterProps {
-  filterValues: GetUsersArgs;
+  filterValues: UserRequestParams;
   onChangeGender: (gender: string) => void;
   onChangePage: (page: number) => void;
   onChangeResultsCount: (resultsCount: number) => void;

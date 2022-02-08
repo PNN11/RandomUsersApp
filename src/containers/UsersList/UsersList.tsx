@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { UsersListProps } from "./UsersList.types";
-import { UserType } from "api/users.types";
-import { getUsers } from "api/users";
 import { CircularProgress, List } from "@mui/material";
-import User from "containers/User";
+
+import { UsersListProps } from "./UsersList.types";
+import { User } from "api/users.types";
+import { getUsers } from "api/users";
+import UserItem from "components/UserItem";
 
 const UsersList: React.FC<UsersListProps> = ({ filterValues }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [users, setUsers] = useState<UserType[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -26,7 +27,7 @@ const UsersList: React.FC<UsersListProps> = ({ filterValues }) => {
       {!error &&
         !loading &&
         users &&
-        users.map((user) => <User key={user.login.uuid} user={user} />)}
+        users.map((user) => <UserItem key={user.login.uuid} user={user} />)}
     </List>
   );
 };

@@ -10,6 +10,7 @@ import {
   GlobalStyles,
   ThemeProvider as Provider,
 } from "@mui/material";
+
 import { ThemeContextType } from "./ThemeProvider.types";
 
 const darkTheme = createTheme({
