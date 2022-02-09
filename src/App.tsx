@@ -1,12 +1,13 @@
 import React, { Suspense } from "react";
-import UsersAppContainer from "containers/UsersAppContainer";
+
+import UsersContainer from "containers/UsersContainer";
 import ThemeProvider from "providers/ThemeProvider";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider>
       <Suspense fallback={"Loading..."}>
-        <UsersAppContainer />
+        <UsersContainer />
       </Suspense>
     </ThemeProvider>
   );

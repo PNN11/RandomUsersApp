@@ -13,8 +13,9 @@ import {
 } from "@mui/material";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
-import { UsersFilterProps, nationals, results } from "./UsersFilter.types";
 import { useTranslation } from "react-i18next";
+
+import { UsersFilterProps, nationals, results } from "./UsersFilter.types";
 
 const UsersFilter: React.FC<UsersFilterProps> = ({
   filterValues,
@@ -45,11 +46,11 @@ const UsersFilter: React.FC<UsersFilterProps> = ({
   };
 
   return (
-    <Stack direction="row" sx={{ justifyContent: "space-between", padding: 2 }}>
+    <Stack direction="row" justifyContent="space-between" p={2}>
       <div>
         <Typography>
           {t("gender")}:
-          {filterValues.gender === "male" ? t("male") : t("female")}{" "}
+          {filterValues.gender === "male" ? t("male") : t("female")}
         </Typography>
         <ToggleButtonGroup value={filterValues.gender}>
           <ToggleButton value="male" onClick={handleChangeGenderValue}>

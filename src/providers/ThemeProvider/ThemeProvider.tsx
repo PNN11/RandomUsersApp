@@ -1,10 +1,21 @@
-import React, { useState, createContext, useCallback, useContext } from "react";
+import React, {
+  useState,
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+} from "react";
 import {
   createTheme,
   GlobalStyles,
   ThemeProvider as Provider,
 } from "@mui/material";
+
 import { ThemeContextType } from "./ThemeProvider.types";
+import {
+  getItemFromLocalStorage,
+  setItemToLocalStorage,
+} from "helpers/localStorage";
 
 const darkTheme = createTheme({
   palette: {
@@ -22,7 +33,13 @@ const ThemeContext = createContext<ThemeContextType>({});
 export const useTheme = () => useContext(ThemeContext);
 
 const ThemeProvider: React.FC = ({ children }) => {
-  const [theme, setTheme] = useState<string>("light");
+  const [theme, setTheme] = useState<string>(
+    getItemFromLocalStorage("theme") || "light"
+  );
+
+  useEffect(() => {
+    setItemToLocalStorage("theme", theme);
+  }, [theme]);
 
   const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
