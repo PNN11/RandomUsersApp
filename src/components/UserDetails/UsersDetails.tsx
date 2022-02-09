@@ -6,6 +6,8 @@ import {
   DialogContent,
   Typography,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
+
 import { UserDetailsProps } from "./UserDetails.types";
 
 const UsersDetails: React.FC<UserDetailsProps> = ({
@@ -14,8 +16,8 @@ const UsersDetails: React.FC<UserDetailsProps> = ({
   phone,
   email,
   location,
-  t,
 }) => {
+  const { t } = useTranslation();
   return (
     <DialogContent sx={{ padding: 0, width: 300 }}>
       <Card>

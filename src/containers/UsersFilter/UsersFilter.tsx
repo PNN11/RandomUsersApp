@@ -13,9 +13,9 @@ import {
 } from "@mui/material";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
-import { UsersFilterProps, nationals, results } from "./UsersFilter.types";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   getSlice,
   setGender,
@@ -23,6 +23,7 @@ import {
   setPage,
   setResultCount,
 } from "store/users";
+import { UsersFilterProps, nationals, results } from "./UsersFilter.types";
 
 const UsersFilter: React.FC<UsersFilterProps> = () => {
   const { t } = useTranslation();
@@ -49,10 +50,10 @@ const UsersFilter: React.FC<UsersFilterProps> = () => {
   };
 
   return (
-    <Stack direction="row" sx={{ justifyContent: "space-between", padding: 2 }}>
+    <Stack direction="row" justifyContent="space-between" p={2}>
       <div>
         <Typography>
-          {t("gender")}:{gender === "male" ? t("male") : t("female")}{" "}
+          {t("gender")}:{gender === "male" ? t("male") : t("female")}
         </Typography>
         <ToggleButtonGroup value={gender}>
           <ToggleButton value="male" onClick={handleChangeGenderValue}>

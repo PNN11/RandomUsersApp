@@ -1,6 +1,3 @@
-import { UserType } from "api/users.types";
-import { TFunction } from "react-i18next";
+import { User } from "api/users.types";
 
-export interface UserDetailsProps extends UserType {
-  t: TFunction<"translation", undefined>;
-}
+export interface UserDetailsProps extends User {}

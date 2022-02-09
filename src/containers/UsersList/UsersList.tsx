@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { UsersListProps } from "./UsersList.types";
-import { CircularProgress, List } from "@mui/material";
-import User from "containers/User";
 import { useDispatch, useSelector } from "react-redux";
+import { CircularProgress, List } from "@mui/material";
+
+import UserItem from "components/UserItem";
 import { getSlice, getUsers } from "store/users";
 import { Statuses } from "store/types";
+import { UsersListProps } from "./UsersList.types";
 
 const UsersList: React.FC<UsersListProps> = () => {
   const { users, usersRequestStatus, gender, page, resultsCount, nat } =
@@ -26,7 +27,7 @@ const UsersList: React.FC<UsersListProps> = () => {
       {!loading &&
         !error &&
         users &&
-        users.map((user) => <User key={user.login.uuid} user={user} />)}
+        users.map((user) => <UserItem key={user.login.uuid} user={user} />)}
     </List>
   );
 };

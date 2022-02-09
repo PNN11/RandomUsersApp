@@ -1,18 +1,17 @@
 import React from "react";
-import UsersFilter from "containers/UsersFilter";
-import UsersList from "containers/UsersList";
 import { Container, Divider, Paper } from "@mui/material";
+
 import Header from "components/Header";
 import { useTheme } from "providers/ThemeProvider/ThemeProvider";
-import { useTranslation } from "react-i18next";
+import UsersFilter from "containers/UsersFilter";
+import UsersList from "containers/UsersList";
 
-const UsersAppContainer: React.FC = () => {
-  const { t, i18n } = useTranslation();
+const UsersContainer: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
     <Paper elevation={0}>
-      <Header toggleTheme={toggleTheme} theme={theme} t={t} i18n={i18n} />
+      <Header toggleTheme={toggleTheme} theme={theme} />
       <Container>
         <UsersFilter />
         <Divider />
@@ -22,4 +21,4 @@ const UsersAppContainer: React.FC = () => {
   );
 };
 
-export default UsersAppContainer;
+export default UsersContainer;

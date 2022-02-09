@@ -1,16 +1,16 @@
-export interface GetUsersArgs {
+export interface UserRequestParams {
   gender: string;
   page: number;
   resultsCount: number;
   nat: string;
 }
 
-export interface UsersRequestAnswer {
-  results: UserType[];
+export interface UserResponceSuccess {
+  results: User[];
   info: Info;
 }
 
-export interface UserType {
+export interface User {
   gender: string;
   name: Name;
   location: Location;

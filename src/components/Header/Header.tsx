@@ -9,16 +9,22 @@ import {
   RadioGroup,
   Typography,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
+
 import { HeaderProps } from "./Header.types";
 import { MaterialUISwitch } from "./Header.styles";
+import { setItemToLocalStorage } from "helpers/localStorage";
 
-const Header: React.FC<HeaderProps> = ({ toggleTheme, theme, t, i18n }) => {
+const Header: React.FC<HeaderProps> = ({ toggleTheme, theme }) => {
+  const { t, i18n } = useTranslation();
   const changeLanguage = (
     e: React.ChangeEvent<HTMLInputElement>,
     value: string
   ) => {
     i18n.changeLanguage(value);
+    setItemToLocalStorage("lng", value);
   };
+
   return (
     <Paper elevation={0}>
       <Container

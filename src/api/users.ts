@@ -1,13 +1,13 @@
 import axios from "axios";
-import { GetUsersArgs, UsersRequestAnswer } from "./users.types";
+import { UserRequestParams, UserResponceSuccess } from "./users.types";
 
 export const getUsers = async ({
   gender,
   page,
   resultsCount,
   nat,
-}: GetUsersArgs) => {
-  const { data } = await axios.get<UsersRequestAnswer>(
+}: UserRequestParams) => {
+  const { data } = await axios.get<UserResponceSuccess>(
     `https://randomuser.me/api/?gender=${gender}&page=${page}&results=${resultsCount}&nat=${nat}`
   );
   return data.results;

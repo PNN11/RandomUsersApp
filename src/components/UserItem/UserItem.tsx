@@ -8,15 +8,14 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { UserProps } from "./User.types";
-import UserDetails from "components/UserDetails";
-import { useTranslation } from "react-i18next";
 
-const User: React.FC<UserProps> = ({ user }) => {
+import { UserItemProps } from "./UserItem.types";
+import UserDetails from "components/UserDetails";
+
+const UserItem: React.FC<UserItemProps> = ({ user }) => {
   const { picture, name, phone, nat } = user;
   const { title, first, last } = name;
   const [open, toggle] = useReducer((prev) => !prev, false);
-  const { t } = useTranslation();
 
   return (
     <>
@@ -34,11 +33,11 @@ const User: React.FC<UserProps> = ({ user }) => {
         />
       </ListItem>
       <Dialog open={open} onClose={toggle}>
-        <UserDetails {...user} t={t} />
+        <UserDetails {...user} />
       </Dialog>
       <Divider variant="inset" component="li" />
     </>
   );
 };
 
-export default User;
+export default UserItem;

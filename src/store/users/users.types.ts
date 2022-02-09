@@ -1,10 +1,10 @@
-import { GetUsersArgs } from "api/users.types";
-import { UserType } from "api/users.types";
+import { UserRequestParams } from "api/users.types";
+import { User } from "api/users.types";
 import { ThunkAction } from "redux-thunk";
 import { Statuses } from "store/types";
 
 export interface State {
-  readonly users: UserType[];
+  readonly users: User[];
   readonly usersRequestStatus: Statuses;
   readonly gender: string;
   readonly page: number;
@@ -44,11 +44,11 @@ export type SetUsersRequestStatusFailureActionCreator =
 
 export type SetUsersRequestSuccessAction = {
   type: typeof SET_USERS;
-  payload: UserType[];
+  payload: User[];
 };
 
 export type SetUsersRequestSuccessActionCreator = (
-  users: UserType[]
+  users: User[]
 ) => SetUsersRequestSuccessAction;
 
 export type SetGenderAction = {
@@ -95,4 +95,4 @@ export type GetUsersThunk = ({
   page,
   resultsCount,
   nat,
-}: GetUsersArgs) => ThunkAction<void, State, GetUsersArgs, Actions>;
+}: UserRequestParams) => ThunkAction<void, State, UserRequestParams, Actions>;
