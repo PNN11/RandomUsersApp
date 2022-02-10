@@ -8,8 +8,9 @@ export const setItemToLocalStorage = (key: string, value: any): void => {
 
 export const getItemFromLocalStorage = (key: string) => {
   let res = localStorage.getItem(key);
-  if (res) {
-    return res[0] === "{" || res[0] === "[" ? JSON.parse(res) : res;
+  try {
+    return JSON.parse(res ?? "null");
+  } catch {
+    return res ?? null;
   }
-  return null;
 };
