@@ -19,7 +19,11 @@ const UserItem: React.FC<UserItemProps> = ({ user }) => {
 
   return (
     <>
-      <ListItem onClick={toggle} alignItems="flex-start">
+      <ListItem
+        onClick={toggle}
+        alignItems="flex-start"
+        sx={{ cursor: "pointer" }}
+      >
         <ListItemAvatar>
           <Avatar alt="User Avatar" src={picture.thumbnail} />
         </ListItemAvatar>
