@@ -1,3 +1,8 @@
+# Random users App
+Приложение отображает список пользователей с API https://randomuser.me/ .\
+Есть возможность фильтрации по полу, национальности, количеству выдаваемых результатов, реализована пагинация.\
+В ветке redux функционал реализован с помощью библиотеки Redux.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
