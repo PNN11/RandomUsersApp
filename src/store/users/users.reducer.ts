@@ -1,3 +1,6 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+import { getUsers } from "./users.actions";
 import { Statuses } from "store/types";
 import * as usersTypes from "./users.types";
 
@@ -10,30 +13,38 @@ export const initialState: usersTypes.State = {
   nat: "",
 };
 
-export const usersReducer = (
-  state = initialState,
-  action: usersTypes.Actions
-) => {
-  switch (action.type) {
-    case usersTypes.SET_USERS_REQUEST_STATUS_PENDING:
-      return { ...state, usersRequestStatus: Statuses.PENDING };
-    case usersTypes.SET_USERS_REQUEST_STATUS_FAILURE:
-      return { ...state, usersRequestStatus: Statuses.FAILURE };
-    case usersTypes.SET_USERS:
-      return {
-        ...state,
-        users: action.payload,
-        usersRequestStatus: Statuses.SUCCESS,
-      };
-    case usersTypes.SET_GENDER:
-      return { ...state, gender: action.payload };
-    case usersTypes.SET_PAGE:
-      return { ...state, page: action.payload };
-    case usersTypes.SET_RESULTS_COUNT:
-      return { ...state, resultsCount: action.payload };
-    case usersTypes.SET_NAT:
-      return { ...state, nat: action.payload };
-    default:
-      return state;
-  }
-};
+const usersSlice = createSlice({
+  name: "users",
+  initialState,
+  reducers: {
+    setGender(state, action: PayloadAction<string>) {
+      state.gender = action.payload;
+    },
+    setPage(state, action: PayloadAction<number>) {
+      state.page = action.payload;
+    },
+    setResultCount(state, action: PayloadAction<number>) {
+      state.resultsCount = action.payload;
+    },
+    setNat(state, action: PayloadAction<string>) {
+      state.nat = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getUsers.pending, (state) => {
+      state.usersRequestStatus = Statuses.PENDING;
+    });
+    builder.addCase(getUsers.fulfilled, (state, action) => {
+      state.users = action.payload;
+      state.usersRequestStatus = Statuses.SUCCESS;
+    });
+    builder.addCase(getUsers.rejected, (state) => {
+      state.usersRequestStatus = Statuses.FAILURE;
+    });
+  },
+});
+
+export const { setGender, setPage, setResultCount, setNat } =
+  usersSlice.actions;
+
+export const usersReducer = usersSlice.reducer;
